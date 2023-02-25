@@ -91,7 +91,7 @@
                                                 <td>
                                                     <a href="{{ url('/forodudas',['idAct' => $individuales->id_actividad])}}"
                                                         class="btn bg-gradient-primary" title="Abrir foro">
-                                                        <i class="fas fa-pencil-alt"></i>
+                                                        <i class="fa fa-inbox"></i>
                                                     </a>
                                                 </td>
 
@@ -137,7 +137,7 @@
                                                 <td>
                                                     <a href="{{ url('/forodudas',['idAct' => $equipo->id_actividad])}}"
                                                         class="btn bg-gradient-primary" title="Abrir foro">
-                                                        <i class="fas fa-pencil-alt"></i>
+                                                        <i class="fa fa-inbox"></i>
                                                     </a>
                                                 </td>
                                             </tr>

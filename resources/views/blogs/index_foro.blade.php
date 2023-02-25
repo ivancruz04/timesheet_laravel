@@ -13,26 +13,18 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div class="card card-primary direct-chat direct-chat-primary">
+            <div class="card card-primary direct-chat direct-chat-primary" style="height: 480px">
                 <div class="card-header">
-                    <h3 class="card-title">Comentarios de la actividad</h3>
+                    <h3 class="card-title"></h3>
                     <div class="card-tools">
                         <span title="New Messages" class="badge bg-danger">{{$num_com}}</span>
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" fdprocessedid="rwu3cu">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle"
-                            fdprocessedid="m4rxyt">
-                            <i class="fas fa-comments"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" fdprocessedid="q2poqm">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        
                     </div>
                 </div>
 
-                <div class="card-body">
-                    <div class="direct-chat-messages">
+                <div class="card-body" >
+                    
+                    <div class="direct-chat-messages" style="height: 340px">
                         @foreach ($comentarios as $comentario)
                         @if ($comentario->id_usuario != $quien_sesion)
                         <div class="direct-chat-msg">
@@ -60,6 +52,7 @@
                             </div>
                         </div>
                         @endif
+                        
                         @endforeach
                     </div>
                 </div>

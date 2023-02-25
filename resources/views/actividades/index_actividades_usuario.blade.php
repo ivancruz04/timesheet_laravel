@@ -16,9 +16,6 @@
     
     // var_dump($id);
     // var_dump($nombre);
-
-
-
 ?>
 <br>
 
@@ -316,6 +313,7 @@
 
 </div>
 
+<!-- modal de descripcion de activida individual -->
 <div class="modal fade hide " id="modal-descripcion-actividad-individual" style="padding-right: 17px;" aria-modal="true"
     role="dialog">
     <div class="modal-dialog modal-lg">
@@ -377,6 +375,7 @@
                                     <label class="text-dark">Fecha de entrega:</label>
                                     <input id="actividad_fecha_entrega_individual" type="text" class="form-control"
                                         disabled>
+                                    <label id="actividad_id_individual" class="text-white"></label>
                                 </div>
                             </div>
                             <br>
@@ -398,6 +397,9 @@
             <div class="modal-footer justify-content-between">
                 <!-- Aqui van los botones de accion (iniciar, rechazar) -->
                 <button type="button" class="btn bg-gradient-danger" data-dismiss="modal">Cerrar</button>
+
+                <a type="button" onclick="abrirForo($('#actividad_id_individual').val())" class="btn bg-gradient-secondary">Comentarios</a>
+
                 <div class="btn-group">
                     <button id="btnIniciarActividadIndividual" type="button" class="btn bg-gradient-primary">Iniciar</button>
                     <button id="btnFinalizarActividadIndividual" type="button" class="btn bg-gradient-success">Finalizar</button>
@@ -407,6 +409,7 @@
     </div>
 </div>
 
+<!-- modal de descripcion de activida en equipo -->
 <div class="modal fade hide " id="modal-descripcion-actividad-equipo" style="padding-right: 17px;" aria-modal="true"
     role="dialog">
     <div class="modal-dialog modal-lg">
@@ -465,6 +468,8 @@
                                     <label class="text-dark">Fecha de entrega:</label>
                                     <input id="actividad_fecha_entrega_equipo" type="text" class="form-control"
                                         disabled>
+                                    <label id="actividad_id_equipo" class="text-white"></label>
+                                    
                                 </div>
                             </div>
                             <br>
@@ -486,6 +491,8 @@
             <div class="modal-footer justify-content-between">
                 <!-- Aqui van los botones de accion (iniciar, rechazar) -->
                 <button type="button" class="btn bg-gradient-danger" data-dismiss="modal">Cerrar</button>
+                <a id="btncomentarios" onclick="abrirForo($('#actividad_id_equipo').val())" type="button" class="btn bg-gradient-secondary">Comentarios</a>
+
                 <div class="btn-group">
                     <button id="btnIniciarActividadEquipo" type="button" class="btn bg-gradient-primary">Iniciar</button>
                     <button id="btnFinalizarActividadEquipo" type="button" class="btn bg-gradient-success btn-disabled">Finalizar</button>
@@ -555,6 +562,9 @@ function modalDescripcionIndividual(idAct) {
                     break;
             }
 
+            
+            document.getElementById('actividad_id_individual').value = response.respuesta[
+                'id_actividad'];
             document.querySelector('#actividad_nombre_individual').innerText = response.respuesta[
                 'nombre_actividad'];
             document.querySelector('#actividad_prioridad_individual').innerText = response.respuesta[
@@ -636,6 +646,7 @@ function modalDescripcionEquipo(idAct) {
                     break;
             }
 
+            document.getElementById('actividad_id_equipo').value = response.respuesta['id_actividad'];
             document.querySelector('#actividad_nombre_equipo').innerText = response.respuesta['nombre_actividad'];
             document.querySelector('#actividad_prioridad_equipo').innerText = response.respuesta[
                 'descripcion_larga'];
@@ -661,6 +672,14 @@ function modalDescripcionEquipo(idAct) {
             });
         })
         .catch(error => console.error('Error:', error))
+}
+
+function abrirForo(idAct){
+
+    console.log('se abre el foro')
+    console.log('id de actividad ' + idAct)
+
+    window.location.href = `/forodudas/${idAct}`;
 }
 
 function iniciarActividadIndividual(idAct) {
@@ -788,8 +807,6 @@ function finalizarActividadEquipo(idAct){
         })
         .catch(error => console.error('Error:', error))
 }
-
-
 
 function alertas(id, mensaje) {
     if (id == 1) {

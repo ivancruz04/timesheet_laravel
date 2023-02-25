@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //referencia para hacer operaciones con la clase DB 
 use Auth;
-use App\Models\Comentarios; //llamada de referencia al modelo de comentarios
+use App\Models\comentarios_actividades; //llamada de referencia al modelo de comentarios
 
 
 
@@ -44,26 +44,26 @@ class ForoController extends Controller
 
     public function guardarComentario(Request $request){
 
-        return response()->json(['respuesta' => $request->hora]);
+        // return response()->json(['respuesta' => $request->hora]);
         
-        // try {
-        //     $comentarios = new Comentarios();
-
-        //     $comentario ->id_actividad = $request->id_actividad;
-        //     $comentario ->id_usuario   = $request->id_usuario;
-        //     $comentario ->descripcion  = $request->descripcion;
-        //     $comentario ->fecha        = $request->fecha;
-        //     $comentario ->hora         = $request->hora;
-        //     $comentario ->save();
-
-        //     if($comentario->save()){
-        //         return response()->json(['respuesta' => 1]);
-        //     }
-        // } catch (\Throwable $th) {
+        try {
             
-        //     return response()->json(array('error' => true, 'respuesta' => $th->getMessage(), /* 'Ocurrió un error al enviar el correo', */ 'code' => 500));
+            $registrar_comentario = DB::table('comentarios_actividades')->insert([
+                'id_actividad' => $request->id_actividad,
+                'id_usuario' => $request->id_usuario,
+                'descripcion' => $request->descripcion,
+                'fecha' => $request->fecha,
+                'hora' => $request->hora
+            ]);
 
-        // }
+            if($registrar_comentario){
+                return response()->json(['respuesta' => 1]);
+            }
+        } catch (\Throwable $th) {
+            
+            return response()->json(array('error' => true, 'respuesta' => 2/*$th->getMessage()*/, /* 'Ocurrió un error al enviar el correo', */ 'code' => 500));
+
+        }
         
         
     }

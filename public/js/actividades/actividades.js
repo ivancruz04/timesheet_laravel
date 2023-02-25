@@ -128,10 +128,6 @@ function limpiarTabla(){
 //         equipo : s_equipo,
 //         proyecto : s_proyecto
 //     };
-
-    
-
-
 // }
 
 
